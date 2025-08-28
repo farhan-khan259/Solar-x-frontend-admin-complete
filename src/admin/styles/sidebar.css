@@ -1,0 +1,92 @@
+/* src/admin/styles/sidebar.css */
+.sidebar {
+    width: 240px;
+    background: #1e1e2d;
+    color: white;
+    height: auto;
+    position: sticky;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    transition: width 0.3s ease;
+    overflow: hidden;
+}
+
+.sidebar.collapsed {
+    width: 80px;
+}
+
+.sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background: #141421;
+    transition: padding 0.3s ease;
+}
+
+.logo {
+    font-size: 20px;
+    margin: 0;
+    transition: font-size 0.3s ease, opacity 0.3s ease;
+}
+
+.collapse-btn {
+    cursor: pointer;
+    font-size: 20px;
+    transition: transform 0.3s ease;
+}
+
+.collapse-btn:hover {
+    transform: rotate(90deg);
+}
+
+.sidebar-menu {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+}
+
+.sidebar-menu a {
+    display: flex;
+    align-items: center;
+    padding: 12px 15px;
+    color: white;
+    text-decoration: none;
+    gap: 10px;
+    transition: background 0.3s ease;
+}
+
+.sidebar-menu a:hover {
+    background: #2c2c3e;
+}
+
+.sidebar-menu a.active {
+    background: #343450;
+}
+
+.sidebar-menu a svg {
+    font-size: 18px;
+    transition: transform 0.3s ease;
+}
+
+.sidebar-menu a:hover svg {
+    transform: scale(1.1);
+}
+
+.sidebar-menu a span {
+    white-space: nowrap;
+    overflow: hidden;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.sidebar.collapsed .sidebar-menu a span {
+    opacity: 0;
+    transform: translateX(-10px);
+    pointer-events: none;
+}
+
+.sidebar.collapsed .logo {
+    font-size: 24px;
+}

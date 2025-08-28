@@ -1,25 +1,45 @@
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
 
-body,
-html {
+* {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    min-height: 100vh;
 }
 
+body {
+    font-family: 'Orbitron', sans-serif;
+}
+
+.forget {
+    color: #f9ac1e;
+    font-size: 0.95rem;
+    cursor: pointer;
+    font-weight: 500;
+    padding: 5px;
+    text-align: left;
+}
+
+.forget a {
+    color: #f9ac1e;
+    text-decoration: none;
+}
 
 .login-page {
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 20px;
-    width: 97%;
+    width: 100vw;
+    height: 100vh;
     background-image: url('../../Assets/Pictures/solar1.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    min-height: 94vh;
 }
+
+
+
+
 
 .login-box {
     width: 100%;
@@ -27,36 +47,35 @@ html {
     background-color: white;
     border: 1px solid #ccc;
     border-radius: 20px;
-    padding: 30px;
+    padding: 30px 20px;
     text-align: center;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 .bot-icon {
     width: 150px;
-    height: 50px;
+    height: auto;
     margin-bottom: 10px;
 }
 
 .title {
-    color: #f9ac1e;
-    margin: 0;
+    color: #2945ff;
+    font-size: 2rem;
     font-family: 'Orbitron', monospace;
-    font-size: 30px;
+    margin-bottom: 5px;
 }
 
 .subtitle {
-    margin: 5px 0 20px;
     color: #333;
-    font-size: 14px;
+    font-size: 0.9rem;
+    margin-bottom: 20px;
 }
 
 label {
     display: block;
     text-align: left;
-    margin-bottom: 5px;
     margin-top: 15px;
-    font-size: 14px;
+    font-size: 0.9rem;
     color: #333;
 }
 
@@ -66,27 +85,28 @@ label {
     border: 1px solid #999;
     border-radius: 12px;
     padding: 10px;
-    margin-bottom: 10px;
+    margin-top: 5px;
 }
 
 .input-icon-box input {
     border: none;
     outline: none;
     flex: 1;
-    font-size: 14px;
+    font-size: 1rem;
     padding: 5px;
-
+    background: transparent;
 }
 
 .icon {
-    width: 20px;
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
     margin-right: 10px;
-    border-radius: 12px;
 }
 
 .eye-icon {
     cursor: pointer;
-    font-size: 18px;
+    font-size: 1.1rem;
     padding-left: 10px;
 }
 
@@ -97,10 +117,15 @@ label {
     color: #000;
     border: none;
     border-radius: 12px;
-    font-size: 16px;
+    font-size: 1rem;
     font-weight: 600;
     margin-top: 20px;
     cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.login-btn:hover {
+    background: #f89f0c;
 }
 
 .login-btn a {
@@ -110,11 +135,80 @@ label {
 
 .footer-text {
     margin-top: 15px;
-    font-size: 14px;
+    font-size: 0.9rem;
     color: #444;
 }
 
 .footer-text a {
     color: #f9ac1e;
     text-decoration: none;
+}
+
+/* Mobile Responsiveness */
+@media screen and (max-width: 480px) {
+    .login-box {
+        padding: 20px 15px;
+    }
+
+    .title {
+        font-size: 1.5rem;
+    }
+
+    .subtitle {
+        font-size: 0.85rem;
+    }
+
+    .input-icon-box input {
+        font-size: 0.9rem;
+    }
+
+    .login-btn {
+        font-size: 0.95rem;
+    }
+
+    .footer-text {
+        font-size: 0.85rem;
+    }
+}
+
+
+/* Popup Overlay and Box */
+.popup-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.popup-box {
+    background: #ffffff;
+    width: 90%;
+    max-width: 360px;
+    padding: 28px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.popup-box h2 {
+    color: #2945ff;
+    margin-bottom: 12px;
+}
+
+.popup-box p {
+    color: #222;
+    margin-bottom: 18px;
+}
+
+.popup-box button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    background: #2945ff;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
 }
