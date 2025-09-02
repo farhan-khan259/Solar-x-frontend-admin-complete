@@ -1,12 +1,13 @@
 // src/admin/components/Topbar.jsx
-import React from "react";
-import { FaBell, FaUserCircle, FaSearch } from "react-icons/fa";
+import { FaBell, FaSearch, FaUserCircle } from "react-icons/fa";
 import "../styles/topbar.css";
+import Sidebar from "../components/Sidebar";
 
 const Topbar = () => {
   return (
     <div className="topbar">
       <div className="topbar-left">
+        <Sidebar />
         <h2>Solarx0 Admin Panel</h2>
       </div>
 

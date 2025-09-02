@@ -54,6 +54,10 @@
     background: #2196f3;
 }
 
+.btn.yellow {
+    background: rgb(33, 9, 187);
+}
+
 .btn.purple {
     background: #9c27b0;
 }

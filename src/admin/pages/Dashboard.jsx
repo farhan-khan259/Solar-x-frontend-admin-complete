@@ -1,13 +1,11 @@
 import Card from "../components/Card";
 import Charts from "../components/Charts";
-import Sidebar from "../components/Sidebar";
 import Topbar from "../components/Topbar";
 import "../styles/admin.css";
 
 export default function Dashboard() {
-  const today = "2025-08-25"; // dynamic: new Date().toISOString().slice(0, 10)
+  const today = "2025-08-25";
 
-  // --- Hardcoded random sample data ---
   const users = [
     { uid: 1, name: "Ali Khan", joinDate: "2025-08-25" },
     { uid: 2, name: "Sara Ahmed", joinDate: "2025-08-24" },
@@ -66,7 +64,6 @@ export default function Dashboard() {
     { id: "P3", active: true },
   ];
 
-  // --- Today Stats ---
   const todayUsers = users.filter((u) => u.joinDate === today).length;
   const todayDeposits = deposits
     .filter((d) => d.date === today && d.status === "completed")
@@ -75,35 +72,23 @@ export default function Dashboard() {
     .filter((w) => w.date === today && w.status === "completed")
     .reduce((sum, w) => sum + w.amount, 0);
 
-  // --- Prepare dashboard cards ---
   const cards = [
-    {
-      title: "Today Users Join",
-      value: todayUsers,
-      color: "green",
-      textColor: "#fff",
-    },
+    { title: "Today Users Join", value: todayUsers },
     {
       title: "Today Deposit (PKR)",
       value: `PKR ${todayDeposits.toLocaleString()}`,
-      color: "green",
-      textColor: "#fff",
     },
     {
       title: "Today Withdraw (PKR)",
       value: `PKR ${todayWithdrawals.toLocaleString()}`,
-      color: "green",
-      textColor: "#fff",
     },
-
-    { title: "Total Users", value: users.length, color: "#2196f3" },
+    { title: "Total Users", value: users.length },
     {
       title: "Total Deposits (PKR)",
       value: `PKR ${deposits
         .filter((d) => d.status === "completed")
         .reduce((sum, d) => sum + d.amount, 0)
         .toLocaleString()}`,
-      color: "#4caf50",
     },
     {
       title: "Total Withdrawals (PKR)",
@@ -111,23 +96,16 @@ export default function Dashboard() {
         .filter((w) => w.status === "completed")
         .reduce((sum, w) => sum + w.amount, 0)
         .toLocaleString()}`,
-      color: "#f44336",
     },
     {
       title: "Pending Deposits",
       value: deposits.filter((d) => d.status === "pending").length,
-      color: "#ff9800",
     },
     {
       title: "Pending Withdrawals",
       value: withdrawals.filter((w) => w.status === "pending").length,
-      color: "#ff5722",
     },
-    {
-      title: "Active Plans",
-      value: plans.filter((p) => p.active).length,
-      color: "#9c27b0",
-    },
+    { title: "Active Plans", value: plans.filter((p) => p.active).length },
   ];
 
   const recentDeposits = deposits.slice(-5).reverse();
@@ -135,14 +113,19 @@ export default function Dashboard() {
 
   return (
     <div className="admin-layout">
-      <Sidebar />
       <div className="main-content">
         <Topbar />
         <div className="dashboard-container">
-          {/* Dashboard Cards */}
+          {/* Cards */}
           <div className="dashboard-cards">
             {cards.map((c, i) => (
-              <Card key={i} {...c} />
+              <Card
+                key={i}
+                title={c.title}
+                value={c.value}
+                color={i < 3 ? "#e53935" : "#fff"} // first 3 cards red, rest white
+                textColor={i < 3 ? "#fff" : "#000"} // first 3 white text, rest black
+              />
             ))}
           </div>
 

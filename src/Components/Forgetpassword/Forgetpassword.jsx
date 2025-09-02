@@ -1,120 +1,201 @@
+import axios from "axios";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../../Assets/Pictures/Solarxlogo.jpeg";
 import "./Forgetpassword.css";
 
 export default function Forgetpassword() {
-  const [otp, setOtp] = useState("");
+  const [step, setStep] = useState(1); // Step 1: request OTP, Step 2: reset password
   const [email, setEmail] = useState("");
+  const [resetCode, setResetCode] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [showError, setShowError] = useState(false);
-  const [errorTitle, setErrorTitle] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
-  const [showSuccess, setShowSuccess] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [popupTitle, setPopupTitle] = useState("");
+  const [popupMessage, setPopupMessage] = useState("");
+  const [showPopup, setShowPopup] = useState(false);
 
-  const handleSubmit = (e) => {
+  const navigate = useNavigate();
+
+  // Step 1: Request OTP
+  const handleRequestOTP = async () => {
+    const trimmedEmail = email.trim().toLowerCase();
+    if (!trimmedEmail) {
+      setPopupTitle("Email Required");
+      setPopupMessage("Please enter your email to receive OTP.");
+      setShowPopup(true);
+      return;
+    }
+
+    setLoading(true);
+    try {
+      const res = await axios.post(
+        "http://localhost:9005/api/v1/Auth/forgotpassword",
+        { email: trimmedEmail },
+        { headers: { "Content-Type": "application/json" } }
+      );
+      console.log("OTP sent:", res.data);
+      setStep(2);
+      setPopupTitle("OTP Sent");
+      setPopupMessage(res.data.message || "OTP has been sent to your email.");
+      setShowPopup(true);
+    } catch (err) {
+      setPopupTitle("Request Failed");
+      setPopupMessage(err.response?.data?.message || "Something went wrong.");
+      setShowPopup(true);
+    }
+    setLoading(false);
+  };
+
+  // Step 2: Reset Password
+  const handleResetPassword = async (e) => {
     e.preventDefault();
 
+    const trimmedEmail = email.trim().toLowerCase();
+    const trimmedCode = resetCode.trim();
+
+    if (!trimmedEmail || !trimmedCode || !password || !confirmPassword) {
+      setPopupTitle("Missing Fields");
+      setPopupMessage("All fields are required.");
+      setShowPopup(true);
+      return;
+    }
+
+    if (trimmedCode.length !== 5) {
+      setPopupTitle("Invalid OTP");
+      setPopupMessage("OTP must be 5 digits.");
+      setShowPopup(true);
+      return;
+    }
+
     if (password !== confirmPassword) {
-      setErrorTitle("Passwords do not match");
-      setErrorMessage("Please make sure both passwords are the same.");
-      setShowError(true);
+      setPopupTitle("Passwords do not match");
+      setPopupMessage("Please make sure both passwords are the same.");
+      setShowPopup(true);
       return;
     }
 
-    if (otp.length !== 5) {
-      setErrorTitle("Invalid OTP");
-      setErrorMessage("OTP must be 5 digits.");
-      setShowError(true);
-      return;
-    }
+    setLoading(true);
+    try {
+      const res = await axios.patch(
+        "http://localhost:9005/api/v1/Auth/resetpassword",
+        {
+          email: trimmedEmail,
+          resetcode: trimmedCode,
+          password,
+          confirmpassword: confirmPassword,
+        },
+        { headers: { "Content-Type": "application/json" } }
+      );
 
-    setShowSuccess(true);
+      console.log(res.data);
+      setPopupTitle("Success");
+      setPopupMessage("Password has been reset successfully!");
+      setShowPopup(true);
+
+      setTimeout(() => {
+        navigate("/"); // redirect to login page
+      }, 1500);
+    } catch (err) {
+      setPopupTitle("Reset Failed");
+      setPopupMessage(err.response?.data?.message || "Something went wrong.");
+      setShowPopup(true);
+    }
+    setLoading(false);
   };
 
   return (
     <div className="login-page4">
       <div className="login-box4">
-        <img src={logo} alt="Bot Icon" className="bot-icon4" />
+        <img src={logo} alt="Solar X" className="bot-icon4" />
         <h2 className="title4">RESET LOGIN PASSWORD</h2>
-        <p className="subtitle4">Recover access to your Solar X</p>
+        <p className="subtitle4">Recover access to your Solar X account</p>
 
-        <form onSubmit={handleSubmit}>
-          <label className="label4">Email Address</label>
-          <input
-            type="email"
-            placeholder="Enter your email address"
-            className="input4"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
+        {step === 1 && (
+          <>
+            <label>Email Address</label>
+            <input
+              type="email"
+              placeholder="Enter your email address"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              className="input4"
+            />
+            <button
+              type="button"
+              className="login-btn4"
+              onClick={handleRequestOTP}
+              disabled={loading}
+            >
+              {loading ? "Sending OTP..." : "Get OTP"}
+            </button>
+          </>
+        )}
 
-          <label className="label4">OTP (5 Digit)</label>
-          <div className="otp-box4-column">
+        {step === 2 && (
+          <form onSubmit={handleResetPassword}>
+            <label>Email Address</label>
+            <input
+              type="email"
+              placeholder="Enter your email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              className="input4"
+            />
+
+            <label>OTP (5 digits)</label>
             <input
               type="text"
               maxLength={5}
               placeholder="Enter OTP"
-              className="otp-input4"
-              value={otp}
-              onChange={(e) => setOtp(e.target.value.replace(/[^0-9]/g, ""))}
+              value={resetCode}
+              onChange={(e) =>
+                setResetCode(e.target.value.replace(/[^0-9]/g, ""))
+              }
               required
+              className="input4"
             />
-            <button type="button" className="get-otp-btn4">
-              Get OTP
+
+            <label>New Password</label>
+            <input
+              type="password"
+              placeholder="Enter new password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              className="input4"
+            />
+
+            <label>Confirm Password</label>
+            <input
+              type="password"
+              placeholder="Confirm new password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              required
+              className="input4"
+            />
+
+            <button type="submit" className="login-btn4" disabled={loading}>
+              {loading ? "Resetting..." : "Confirm"}
             </button>
-          </div>
-
-          <label className="label4">New Password</label>
-          <input
-            type="password"
-            placeholder="Enter 6 digit password"
-            className="input4"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-
-          <label className="label4">Confirm Password</label>
-          <input
-            type="password"
-            placeholder="Confirm your password"
-            className="input4"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            required
-          />
-
-          <button type="submit" className="login-btn4">
-            Confirm
-          </button>
-        </form>
+          </form>
+        )}
 
         <p className="footer-text4">
-          Remembered password? <Link to="/">Sign In</Link>
+          Remembered your password? <Link to="/">Sign In</Link>
         </p>
       </div>
 
-      {/* Error Popup */}
-      {showError && (
+      {/* Popup */}
+      {showPopup && (
         <div className="deposit-success-overlay">
           <div className="deposit-success-box">
-            <h2>❌ {errorTitle}</h2>
-            <p>{errorMessage}</p>
-            <button onClick={() => setShowError(false)}>Close</button>
-          </div>
-        </div>
-      )}
-
-      {/* Success Popup */}
-      {showSuccess && (
-        <div className="deposit-success-overlay">
-          <div className="deposit-success-box">
-            <h2>✅ Password Reset Successfully</h2>
-            <p>Your password has been updated.</p>
-            <button onClick={() => setShowSuccess(false)}>Close</button>
+            <h2>{popupTitle}</h2>
+            <p>{popupMessage}</p>
+            <button onClick={() => setShowPopup(false)}>Close</button>
           </div>
         </div>
       )}

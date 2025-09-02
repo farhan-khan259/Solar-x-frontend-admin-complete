@@ -2,11 +2,14 @@
 import React from "react";
 import "../styles/cards.css";
 
-const Card = ({ title, value }) => {
+const Card = ({ title, value, color = "#ffffff", textColor = "#1e1e2d" }) => {
   return (
-    <div className="card-box">
-      <h3>{title}</h3>
-      <p>{value}</p>
+    <div
+      className="card-box"
+      style={{ backgroundColor: color, color: textColor }}
+    >
+      <h3 style={{ color: textColor }}>{title}</h3>
+      <p style={{ color: textColor }}>{value}</p>
     </div>
   );
 };

@@ -43,16 +43,22 @@ export default function UserDetails() {
   };
 
   // Login to Account (Admin Impersonation)
-  // const handleLogin = () => {
-  //   alert(`Logging in as ${user.name}...`);
-  //   // Later: Redirect to user dashboard session
-  // };
+  const handleLogin = () => {
+    alert(`Logging in as ${user.name}...`);
+    // Later: Redirect to user dashboard session
+  };
 
-  // // Activate Plan
-  // const handleActivatePlan = () => {
-  //   alert("Plan Activated Successfully!");
-  //   // Later: API call to activate plan
-  // };
+  // Activate Plan
+  const handleDeletePlan = () => {
+    alert("Plan Deleted Successfully!");
+    // Later: API call to delete plan
+  };
+
+  // Ban User
+  const handleBanUser = () => {
+    alert("User Banned Successfully!");
+    // Later: API call to Ban User
+  };
 
   return (
     <div className="admin-layout">
@@ -100,12 +106,15 @@ export default function UserDetails() {
             <button className="btn red" onClick={handleDelete}>
               Delete Account
             </button>
-            {/* <button className="btn blue" onClick={handleLogin}>
+            <button className="btn blue" onClick={handleLogin}>
               Login to Account
             </button>
-            <button className="btn purple" onClick={handleActivatePlan}>
-              Activate Plan
-            </button> */}
+            <button className="btn purple" onClick={handleDeletePlan}>
+              Delete Plan
+            </button>
+            <button className="btn yellow" onClick={handleBanUser}>
+              Ban User
+            </button>
           </div>
         </div>
       </div>

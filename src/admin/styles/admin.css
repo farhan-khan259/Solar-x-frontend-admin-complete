@@ -93,7 +93,7 @@
     }
 
     .sidebar {
-        width: 100%;
+        width: 150%;
     }
 
     .sidebar.collapsed {
@@ -131,4 +131,21 @@
         font-size: 12px;
         padding: 6px;
     }
+}
+
+.dashboard-card {
+    padding: 16px;
+    border-radius: 8px;
+    font-weight: bold;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.dashboard-card h4 {
+    margin: 0 0 6px 0;
+    font-size: 16px;
+}
+
+.dashboard-card p {
+    margin: 0;
+    font-size: 20px;
 }

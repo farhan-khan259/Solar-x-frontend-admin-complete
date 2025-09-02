@@ -7,37 +7,59 @@ export default function Signin() {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
   const [popupTitle, setPopupTitle] = useState("");
   const [popupMessage, setPopupMessage] = useState("");
 
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
-    // Basic email validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email) || password.trim() === "") {
-      setPopupTitle("Invalid Credentials");
-      setPopupMessage("Email or password does not match.");
+    try {
+      const res = await fetch("http://localhost:9005/api/v1/Auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+        credentials: "include",
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        setPopupTitle("Login Failed");
+        setPopupMessage(data.message || "Invalid email or password.");
+        setShowPopup(true);
+        setLoading(false);
+        return;
+      }
+
+      // Save JWT token if provided
+      if (data.token) {
+        localStorage.setItem("token", data.token);
+      }
+
+      // Explicitly check role and redirect
+      if (data.user && data.user.role === "admin") {
+        navigate("/admin");
+      } else {
+        navigate("/dashboard");
+      }
+    } catch (error) {
+      setPopupTitle("Server Error");
+      setPopupMessage("Could not connect to server. Try again later.");
       setShowPopup(true);
-      return;
-    }
-
-    // Check admin credentials
-    if (email === "adminsolarx001@gmail.com" && password === "admin@001") {
-      navigate("/admin");
-    } else {
-      // Redirect regular users
-      navigate("/dashboard");
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <div className="login-page">
       <div className="login-box">
-        <img src={logo} alt="Bot Icon" className="bot-icon" />
+        <img src={logo} alt="Solar X Logo" className="bot-icon" />
         <h2 className="title">WELCOME BACK!</h2>
         <p className="subtitle">Sign in to Solar X</p>
 
@@ -74,9 +96,12 @@ export default function Signin() {
             <Link to="/forgetpassword"> forget password?</Link>
           </p>
 
-          {/* Submit button now calls handleSubmit, no Link inside */}
-          <button type="submit" className="login-btn">
-            Sign In
+          <Link to="/dashboard">Direct to dashboard</Link>
+          <br />
+
+          <Link to="/admin">Direct to adminpanel</Link>
+          <button type="submit" className="login-btn" disabled={loading}>
+            {loading ? "Signing In..." : "Sign In"}
           </button>
 
           <p className="footer-text">
@@ -85,7 +110,6 @@ export default function Signin() {
         </form>
       </div>
 
-      {/* Popup */}
       {showPopup && (
         <div className="popup-overlay">
           <div className="popup-box">
