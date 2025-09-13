@@ -41,6 +41,9 @@ export default function Signin() {
         localStorage.setItem("token", data.token);
       }
 
+      // ✅ Set flag so Dashboard knows it’s a fresh login
+      sessionStorage.setItem("justLoggedIn", "true");
+
       // Explicitly check role and redirect
       if (data.user && data.user.role === "admin") {
         navigate("/admin");
@@ -98,8 +101,8 @@ export default function Signin() {
 
           <Link to="/dashboard">Direct to dashboard</Link>
           <br />
-
           <Link to="/admin">Direct to adminpanel</Link>
+
           <button type="submit" className="login-btn" disabled={loading}>
             {loading ? "Signing In..." : "Sign In"}
           </button>

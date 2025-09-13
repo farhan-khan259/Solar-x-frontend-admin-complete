@@ -4,211 +4,299 @@ import { Link } from "react-router-dom";
 import "./Transactionhistory.css";
 
 export default function Transactionhistory() {
-  const [type, setType] = useState("deposit");
-  const [status, setStatus] = useState("pending"); // Start with pending
+  const [type, setType] = useState("deposit"); // deposit | withdraw | commission
+  const [status, setStatus] = useState("pending"); // for deposit/withdraw
+  const [level, setLevel] = useState("level1"); // for commission levels
 
-  // FULL DATA FOR ALL TYPES / STATUSES
-  const data = {
-    withdraw: {
-      complete: [
+  // Commission mock data
+  const commissionData = {
+    level1: {
+      total: "5965 PKR",
+      records: [
         {
-          method: "Jazzcash",
-          amount: "120Rs",
-          charge: "0Rs",
-          afterCharge: "120PKR",
-          number: "03090051799",
-          account: "Sajid Ali",
-          status: "success",
-          date: "Sep 08 2024 09:53",
+          userId: "1001",
+          upliner: "M Farhan",
+          deposit: "5000 PKR",
+          commission: "800 PKR",
+          date: "10/08/2025 (10:54 PM)",
         },
         {
-          method: "Easypaisa",
-          amount: "500Rs",
-          charge: "10Rs",
-          afterCharge: "490PKR",
-          number: "03120098765",
-          account: "Bilal Ahmed",
-          status: "success",
-          date: "Aug 21 2024 12:15",
+          userId: "1002",
+          upliner: "Ali Raza",
+          deposit: "3000 PKR",
+          commission: "500 PKR",
+          date: "09/08/2025 (03:20 PM)",
         },
         {
-          method: "Bank Transfer",
-          amount: "2000Rs",
-          charge: "0Rs",
-          afterCharge: "2000PKR",
-          number: "NBP-123456",
-          account: "Ahsan Khan",
-          status: "success",
-          date: "Jul 15 2024 14:10",
-        },
-      ],
-      pending: [
-        {
-          method: "Jazzcash",
-          amount: "300Rs",
-          charge: "0Rs",
-          afterCharge: "300PKR",
-          number: "03151234567",
-          account: "Ali Raza",
-          status: "pending",
-          date: "Aug 10 2024 08:45",
-        },
-        {
-          method: "Easypaisa",
-          amount: "750Rs",
-          charge: "15Rs",
-          afterCharge: "735PKR",
-          number: "03085556666",
-          account: "Naeem Akhtar",
-          status: "pending",
-          date: "Aug 05 2024 15:50",
-        },
-        {
-          method: "Bank Transfer",
-          amount: "1500Rs",
-          charge: "0Rs",
-          afterCharge: "1500PKR",
-          number: "HBL-654321",
-          account: "Hamza Tariq",
-          status: "pending",
-          date: "Jul 25 2024 11:20",
-        },
-      ],
-      rejected: [
-        {
-          method: "Jazzcash",
-          amount: "100Rs",
-          charge: "0Rs",
-          afterCharge: "100PKR",
-          number: "03445554444",
-          account: "Fahad Ali",
-          status: "rejected",
-          date: "Aug 01 2024 17:30",
-        },
-        {
-          method: "Easypaisa",
-          amount: "600Rs",
-          charge: "10Rs",
-          afterCharge: "590PKR",
-          number: "03224443333",
-          account: "Ahmed Hassan",
-          status: "rejected",
-          date: "Jul 18 2024 10:00",
-        },
-        {
-          method: "Bank Transfer",
-          amount: "2500Rs",
-          charge: "0Rs",
-          afterCharge: "2500PKR",
-          number: "UBL-987654",
-          account: "Sana Khan",
-          status: "rejected",
-          date: "Jul 05 2024 09:15",
+          userId: "1003",
+          upliner: "Hassan Khan",
+          deposit: "7000 PKR",
+          commission: "1100 PKR",
+          date: "08/08/2025 (01:10 PM)",
         },
       ],
     },
-    deposit: {
-      complete: [
+    level2: {
+      total: "2560 PKR",
+      records: [
         {
-          method: "Jazzcash",
-          amount: "500Rs",
-          charge: "0Rs",
-          afterCharge: "500PKR",
-          number: "03098887777",
-          account: "Zeeshan Ali",
-          status: "success",
-          date: "Aug 28 2024 16:25",
+          userId: "2001",
+          upliner: "Sajid Ali",
+          deposit: "4000 PKR",
+          commission: "600 PKR",
+          date: "07/08/2025 (05:30 PM)",
         },
         {
-          method: "Easypaisa",
-          amount: "1200Rs",
-          charge: "0Rs",
-          afterCharge: "1200PKR",
-          number: "03229998888",
-          account: "Ali Khan",
-          status: "success",
-          date: "Aug 15 2024 11:40",
+          userId: "2002",
+          upliner: "Bilal Ahmed",
+          deposit: "2500 PKR",
+          commission: "400 PKR",
+          date: "06/08/2025 (11:15 AM)",
         },
         {
-          method: "Bank Transfer",
-          amount: "3000Rs",
-          charge: "0Rs",
-          afterCharge: "3000PKR",
-          number: "Meezan-333333",
-          account: "Umair Qureshi",
-          status: "success",
-          date: "Jul 30 2024 19:05",
+          userId: "2003",
+          upliner: "Umair Qureshi",
+          deposit: "3500 PKR",
+          commission: "550 PKR",
+          date: "05/08/2025 (07:45 PM)",
         },
       ],
-      pending: [
+    },
+    level3: {
+      total: "1420 PKR",
+      records: [
         {
-          method: "Jazzcash",
-          amount: "800Rs",
-          charge: "0Rs",
-          afterCharge: "800PKR",
-          number: "03094445555",
-          account: "Farhan Ali",
-          status: "pending",
-          date: "Aug 09 2024 07:30",
+          userId: "3001",
+          upliner: "Kamran Iqbal",
+          deposit: "2000 PKR",
+          commission: "300 PKR",
+          date: "04/08/2025 (09:30 PM)",
         },
         {
+          userId: "3002",
+          upliner: "Ahmed Hassan",
+          deposit: "1800 PKR",
+          commission: "280 PKR",
+          date: "03/08/2025 (01:50 PM)",
+        },
+        {
+          userId: "3003",
+          upliner: "Sana Khan",
+          deposit: "2500 PKR",
+          commission: "400 PKR",
+          date: "02/08/2025 (10:25 AM)",
+        },
+      ],
+    },
+  };
+
+  // Deposit/Withdraw mock data (your existing code)
+  const data = {
+    withdraw: {
+      pending: [
+        {
           method: "Easypaisa",
-          amount: "250Rs",
-          charge: "0Rs",
-          afterCharge: "250PKR",
-          number: "03440001111",
-          account: "Samiullah",
-          status: "pending",
-          date: "Jul 29 2024 14:50",
+          amount: "1500 PKR",
+          charge: "50 PKR",
+          afterCharge: "1450 PKR",
+          number: "03451234567",
+          account: "Farhan Khan",
+          status: "Pending",
+          date: "11/09/2025 (12:30 PM)",
+        },
+        {
+          method: "JazzCash",
+          amount: "3000 PKR",
+          charge: "100 PKR",
+          afterCharge: "2900 PKR",
+          number: "03011234567",
+          account: "Ali Raza",
+          status: "Pending",
+          date: "10/09/2025 (06:20 PM)",
         },
         {
           method: "Bank Transfer",
-          amount: "2000Rs",
-          charge: "0Rs",
-          afterCharge: "2000PKR",
-          number: "HBL-222222",
-          account: "Hassan Raza",
-          status: "pending",
-          date: "Jul 21 2024 12:00",
+          amount: "5000 PKR",
+          charge: "150 PKR",
+          afterCharge: "4850 PKR",
+          number: "PK88XYZ123456789",
+          account: "Ahmed Iqbal",
+          status: "Pending",
+          date: "09/09/2025 (09:50 AM)",
+        },
+      ],
+      complete: [
+        {
+          method: "Easypaisa",
+          amount: "5000 PKR",
+          charge: "100 PKR",
+          afterCharge: "4900 PKR",
+          number: "03459876543",
+          account: "Hassan Khan",
+          status: "Complete",
+          date: "08/09/2025 (11:00 AM)",
+        },
+        {
+          method: "Bank Transfer",
+          amount: "10,000 PKR",
+          charge: "200 PKR",
+          afterCharge: "9,800 PKR",
+          number: "PK00ABC123456789",
+          account: "Sajid Ali",
+          status: "Complete",
+          date: "06/09/2025 (03:15 PM)",
+        },
+        {
+          method: "JazzCash",
+          amount: "2500 PKR",
+          charge: "50 PKR",
+          afterCharge: "2450 PKR",
+          number: "03014567890",
+          account: "Usman Ahmed",
+          status: "Complete",
+          date: "04/09/2025 (05:40 PM)",
         },
       ],
       rejected: [
         {
-          method: "Jazzcash",
-          amount: "1000Rs",
-          charge: "0Rs",
-          afterCharge: "1000PKR",
-          number: "03118889999",
-          account: "Qasim Ali",
-          status: "rejected",
-          date: "Aug 03 2024 09:30",
-        },
-        {
-          method: "Easypaisa",
-          amount: "150Rs",
-          charge: "0Rs",
-          afterCharge: "150PKR",
-          number: "03012223333",
-          account: "Waqas Ahmed",
-          status: "rejected",
-          date: "Jul 16 2024 18:20",
+          method: "JazzCash",
+          amount: "2500 PKR",
+          charge: "80 PKR",
+          afterCharge: "2420 PKR",
+          number: "03019876543",
+          account: "Ahmed Khan",
+          status: "Rejected",
+          date: "05/09/2025 (07:40 PM)",
         },
         {
           method: "Bank Transfer",
-          amount: "5000Rs",
-          charge: "0Rs",
-          afterCharge: "5000PKR",
-          number: "UBL-555555",
-          account: "Kamran Iqbal",
-          status: "rejected",
-          date: "Jul 10 2024 15:10",
+          amount: "7000 PKR",
+          charge: "200 PKR",
+          afterCharge: "6800 PKR",
+          number: "PK66LMN789654321",
+          account: "Bilal Qureshi",
+          status: "Rejected",
+          date: "03/09/2025 (02:20 PM)",
+        },
+        {
+          method: "Easypaisa",
+          amount: "1800 PKR",
+          charge: "60 PKR",
+          afterCharge: "1740 PKR",
+          number: "03451112222",
+          account: "Ayesha Khan",
+          status: "Rejected",
+          date: "02/09/2025 (09:15 AM)",
+        },
+      ],
+    },
+
+    deposit: {
+      pending: [
+        {
+          method: "Bank Transfer",
+          amount: "6000 PKR",
+          charge: "120 PKR",
+          afterCharge: "5880 PKR",
+          number: "PK12XYZ987654321",
+          account: "Usman Iqbal",
+          status: "Pending",
+          date: "11/09/2025 (10:20 AM)",
+        },
+        {
+          method: "JazzCash",
+          amount: "1500 PKR",
+          charge: "50 PKR",
+          afterCharge: "1450 PKR",
+          number: "03019998888",
+          account: "Hamza Ali",
+          status: "Pending",
+          date: "10/09/2025 (03:45 PM)",
+        },
+        {
+          method: "Easypaisa",
+          amount: "2200 PKR",
+          charge: "70 PKR",
+          afterCharge: "2130 PKR",
+          number: "03456667777",
+          account: "Fatima Noor",
+          status: "Pending",
+          date: "09/09/2025 (07:30 PM)",
+        },
+      ],
+      complete: [
+        {
+          method: "Easypaisa",
+          amount: "2000 PKR",
+          charge: "50 PKR",
+          afterCharge: "1950 PKR",
+          number: "03450000001",
+          account: "Bilal Ahmed",
+          status: "Complete",
+          date: "09/09/2025 (04:45 PM)",
+        },
+        {
+          method: "JazzCash",
+          amount: "4000 PKR",
+          charge: "100 PKR",
+          afterCharge: "3900 PKR",
+          number: "03010000002",
+          account: "Ayesha Khan",
+          status: "Complete",
+          date: "07/09/2025 (01:25 PM)",
+        },
+        {
+          method: "Bank Transfer",
+          amount: "12,000 PKR",
+          charge: "250 PKR",
+          afterCharge: "11,750 PKR",
+          number: "PK55LMN123123123",
+          account: "Hamza Ali",
+          status: "Complete",
+          date: "04/09/2025 (09:10 AM)",
+        },
+      ],
+      rejected: [
+        {
+          method: "Easypaisa",
+          amount: "3500 PKR",
+          charge: "90 PKR",
+          afterCharge: "3410 PKR",
+          number: "03458888888",
+          account: "Sana Malik",
+          status: "Rejected",
+          date: "03/09/2025 (02:00 PM)",
+        },
+        {
+          method: "Bank Transfer",
+          amount: "8000 PKR",
+          charge: "180 PKR",
+          afterCharge: "7820 PKR",
+          number: "PK77QWE456789123",
+          account: "Tariq Mahmood",
+          status: "Rejected",
+          date: "01/09/2025 (05:15 PM)",
+        },
+        {
+          method: "JazzCash",
+          amount: "1200 PKR",
+          charge: "40 PKR",
+          afterCharge: "1160 PKR",
+          number: "03017776666",
+          account: "Imran Khan",
+          status: "Rejected",
+          date: "31/08/2025 (11:00 AM)",
         },
       ],
     },
   };
 
   const transactionList =
-    data[type] && data[type][status] ? data[type][status] : [];
+    type === "commission"
+      ? []
+      : data[type] && data[type][status]
+      ? data[type][status]
+      : [];
 
   return (
     <div className="transaction-container">
@@ -219,6 +307,7 @@ export default function Transactionhistory() {
         <h2 className="transaction-title">Transaction History</h2>
       </div>
 
+      {/* Top Tabs */}
       <div className="type-tabs">
         <button
           className={type === "deposit" ? "active" : ""}
@@ -232,66 +321,133 @@ export default function Transactionhistory() {
         >
           Withdraw History
         </button>
-      </div>
-
-      <div className="status-tabs">
         <button
-          className={status === "pending" ? "active" : ""}
-          onClick={() => setStatus("pending")}
+          className={type === "commission" ? "active" : ""}
+          onClick={() => setType("commission")}
         >
-          PENDING
-        </button>
-        <button
-          className={status === "complete" ? "active" : ""}
-          onClick={() => setStatus("complete")}
-        >
-          COMPLETE
-        </button>
-        <button
-          className={status === "rejected" ? "active" : ""}
-          onClick={() => setStatus("rejected")}
-        >
-          REJECTED
+          Commission History
         </button>
       </div>
 
-      {transactionList.length === 0 ? (
-        <p>No transactions available.</p>
-      ) : (
-        transactionList.map((item, index) => (
-          <div key={index} className="transaction-card">
-            <h3>
-              {type === "withdraw" ? "Withdraw With" : "Deposit With"}{" "}
-              {item.method}
-            </h3>
-            <p>
-              <span>Method:</span> {item.method}
-            </p>
-            <p>
-              <span>Amount:</span> {item.amount}
-            </p>
-            <p>
-              <span>Charge:</span> {item.charge}
-            </p>
-            <p>
-              <span>After Charge:</span> {item.afterCharge}
-            </p>
-            <p>
-              <span>{item.method} Number:</span>{" "}
-              <strong className="highlight">{item.number}</strong>
-            </p>
-            <p>
-              <span>Account Title:</span>{" "}
-              <strong className="highlight">{item.account}</strong>
-            </p>
-            <p>
-              <span>Status:</span> {item.status}
-            </p>
-            <p>
-              <span>Date:</span> {item.date}
-            </p>
+      {/* Status Tabs for deposit/withdraw */}
+      {type !== "commission" && (
+        <div className="status-tabs">
+          <button
+            className={status === "pending" ? "active" : ""}
+            onClick={() => setStatus("pending")}
+          >
+            PENDING
+          </button>
+          <button
+            className={status === "complete" ? "active" : ""}
+            onClick={() => setStatus("complete")}
+          >
+            COMPLETE
+          </button>
+          <button
+            className={status === "rejected" ? "active" : ""}
+            onClick={() => setStatus("rejected")}
+          >
+            REJECTED
+          </button>
+        </div>
+      )}
+
+      {/* Commission History Screen */}
+      {type === "commission" && (
+        <div className="commission-section">
+          <div className="level-tabs">
+            <button
+              className={level === "level1" ? "active" : ""}
+              onClick={() => setLevel("level1")}
+            >
+              Level 1
+            </button>
+            <button
+              className={level === "level2" ? "active" : ""}
+              onClick={() => setLevel("level2")}
+            >
+              Level 2
+            </button>
+            <button
+              className={level === "level3" ? "active" : ""}
+              onClick={() => setLevel("level3")}
+            >
+              Level 3
+            </button>
           </div>
-        ))
+
+          <div className="commission-box">
+            <h3>
+              Total Commission {level.toUpperCase()}:{" "}
+              <span className="total">{commissionData[level].total}</span>
+            </h3>
+
+            {commissionData[level].records.map((rec, i) => (
+              <div key={i} className="commission-card">
+                <p>
+                  <span className="blue">User Id:</span> {rec.userId}
+                </p>
+                <p>
+                  <span>Up liner By:</span> {rec.upliner}
+                </p>
+                <p>
+                  <span className="orange">Deposit Amount:</span> {rec.deposit}
+                </p>
+                <p>
+                  <span className="pink">Commission:</span> {rec.commission}
+                </p>
+                <p>
+                  <span className="green">Date and time:</span> {rec.date}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Deposit/Withdraw Screen */}
+      {type !== "commission" && (
+        <>
+          {transactionList.length === 0 ? (
+            <p>No transactions available.</p>
+          ) : (
+            transactionList.map((item, index) => (
+              <div key={index} className="transaction-card">
+                <h3>
+                  {type === "withdraw" ? "Withdraw With" : "Deposit With"}{" "}
+                  {item.method}
+                </h3>
+                <p>
+                  <span>Method:</span> {item.method}
+                </p>
+                <p>
+                  <span>Amount:</span> {item.amount}
+                </p>
+                <p>
+                  <span>Charge:</span> {item.charge}
+                </p>
+                <p>
+                  <span>After Charge:</span> {item.afterCharge}
+                </p>
+                <p>
+                  <span>{item.method} Number:</span>{" "}
+                  <strong className="highlight">{item.number}</strong>
+                </p>
+                <p>
+                  <span>Account Title:</span>{" "}
+                  <strong className="highlight">{item.account}</strong>
+                </p>
+                <p>
+                  <span>Status:</span> {item.status}
+                </p>
+                <p>
+                  <span>Date:</span> {item.date}
+                </p>
+              </div>
+            ))
+          )}
+        </>
       )}
     </div>
   );

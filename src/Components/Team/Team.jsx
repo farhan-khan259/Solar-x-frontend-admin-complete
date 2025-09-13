@@ -77,7 +77,7 @@ const InviteScreen = () => {
 
   const copyToClipboard = (text) => {
     navigator.clipboard.writeText(text);
-    alert("Link copied to clipboard!");
+    // ❌ Removed alert
   };
 
   const shareLink = async () => {
@@ -93,9 +93,8 @@ const InviteScreen = () => {
         console.error("Sharing failed:", err.message);
       }
     } else {
-      // Fallback if Web Share API not supported
+      // Fallback: copy silently
       copyToClipboard(referralLink);
-      alert("Sharing is not supported here. Link copied to clipboard!");
     }
   };
 
@@ -146,6 +145,8 @@ const InviteScreen = () => {
   );
 };
 
+// TeamDataScreen and TeamDetailsScreen remain unchanged...
+
 const TeamDataScreen = () => {
   return (
     <div className="team-data-container">
@@ -155,7 +156,7 @@ const TeamDataScreen = () => {
           <p>1</p>
         </div>
         <div className="summary-card green">
-          <h4>Total Earnings</h4>
+          <h4>Total Team Commission</h4>
           <p>PKR 0</p>
         </div>
       </div>
@@ -166,9 +167,7 @@ const TeamDataScreen = () => {
           <h3>Level 1 – Direct Referrals 👥</h3>
           <span className="referral-percent">8%</span>
         </div>
-        <p>
-          Total Users: <span>1</span>
-        </p>
+
         <p>
           Today New User: <span>1</span>
         </p>
@@ -176,16 +175,21 @@ const TeamDataScreen = () => {
           Total Active User: <span>1</span>
         </p>
         <p>
-          Total Team Deposit: <span>0 PKR</span>
+          Total Users: <span>1</span>
         </p>
+
         <p>
           Today Team Deposit: <span>0 PKR</span>
         </p>
         <p>
-          Total Team Withdrawal: <span>0 PKR</span>
+          Total Team Deposit: <span>0 PKR</span>
         </p>
+
         <p>
           Today Team Withdrawal: <span>0 PKR</span>
+        </p>
+        <p>
+          Total Team Withdrawal: <span>0 PKR</span>
         </p>
       </div>
 
@@ -196,25 +200,27 @@ const TeamDataScreen = () => {
           <span className="referral-percent">3%</span>
         </div>
         <p>
+          Today New User: <span>1</span>
+        </p>
+        <p>
+          Total Active User: <span>1</span>
+        </p>
+        <p>
           Total Users: <span>1</span>
         </p>
-        <p>
-          Today New User: <span>0</span>
-        </p>
-        <p>
-          Total Active User: <span>0</span>
-        </p>
-        <p>
-          Total Team Deposit: <span>0 PKR</span>
-        </p>
+
         <p>
           Today Team Deposit: <span>0 PKR</span>
         </p>
         <p>
-          Total Team Withdrawal: <span>0 PKR</span>
+          Total Team Deposit: <span>0 PKR</span>
         </p>
+
         <p>
           Today Team Withdrawal: <span>0 PKR</span>
+        </p>
+        <p>
+          Total Team Withdrawal: <span>0 PKR</span>
         </p>
       </div>
 
@@ -225,25 +231,27 @@ const TeamDataScreen = () => {
           <span className="referral-percent">2%</span>
         </div>
         <p>
+          Today New User: <span>1</span>
+        </p>
+        <p>
+          Total Active User: <span>1</span>
+        </p>
+        <p>
           Total Users: <span>1</span>
         </p>
-        <p>
-          Today New User: <span>0</span>
-        </p>
-        <p>
-          Total Active User: <span>0</span>
-        </p>
-        <p>
-          Total Team Deposit: <span>0 PKR</span>
-        </p>
+
         <p>
           Today Team Deposit: <span>0 PKR</span>
         </p>
         <p>
-          Total Team Withdrawal: <span>0 PKR</span>
+          Total Team Deposit: <span>0 PKR</span>
         </p>
+
         <p>
           Today Team Withdrawal: <span>0 PKR</span>
+        </p>
+        <p>
+          Total Team Withdrawal: <span>0 PKR</span>
         </p>
       </div>
     </div>
@@ -256,6 +264,7 @@ const TeamDetailsScreen = () => {
   const teamData = {
     level1: [
       {
+        Upliner: "Farhan",
         name: "Sajid Khan",
         whatsapp: "0300*******",
         investment: 0,
@@ -263,6 +272,7 @@ const TeamDetailsScreen = () => {
         joiningDate: "20/07/2024 11:32 AM",
       },
       {
+        Upliner: "Farhan",
         name: "Ali Raza",
         whatsapp: "0306*******",
         investment: 1000,
@@ -270,6 +280,7 @@ const TeamDetailsScreen = () => {
         joiningDate: "15/07/2024 03:11 PM",
       },
       {
+        Upliner: "Farhan",
         name: "Umar Farooq",
         whatsapp: "0332*******",
         investment: 1500,
@@ -279,6 +290,7 @@ const TeamDetailsScreen = () => {
     ],
     level2: [
       {
+        Upliner: "Farhan",
         name: "Ahmed Khan",
         whatsapp: "0304*******",
         investment: 0,
@@ -286,6 +298,7 @@ const TeamDetailsScreen = () => {
         joiningDate: "17/07/2024 12:08 PM",
       },
       {
+        Upliner: "Farhan",
         name: "Bilal Shah",
         whatsapp: "0312*******",
         investment: 0,
@@ -293,6 +306,7 @@ const TeamDetailsScreen = () => {
         joiningDate: "11/07/2024 04:30 PM",
       },
       {
+        Upliner: "Farhan",
         name: "Talha Malik",
         whatsapp: "0321*******",
         investment: 0,
@@ -302,6 +316,7 @@ const TeamDetailsScreen = () => {
     ],
     level3: [
       {
+        Upliner: "Farhan",
         name: "Noman Ali",
         whatsapp: "0302*******",
         investment: 0,
@@ -309,6 +324,7 @@ const TeamDetailsScreen = () => {
         joiningDate: "05/07/2024 10:14 AM",
       },
       {
+        Upliner: "Farhan",
         name: "Salman Musa",
         whatsapp: "0301*******",
         investment: 0,
@@ -316,6 +332,7 @@ const TeamDetailsScreen = () => {
         joiningDate: "29/06/2024 05:43 PM",
       },
       {
+        Upliner: "Farhan",
         name: "Hamza Rehman",
         whatsapp: "0309*******",
         investment: 0,
@@ -371,7 +388,15 @@ const TeamDetailsScreen = () => {
           </p>
         ) : (
           teamData[activeLevel].map((user, index) => (
-            <div className="user-card" key={index}>
+            <div className="user-cardteam" key={index}>
+              <p>
+                <strong>Upliner:</strong>{" "}
+                {user.Upliner ? (
+                  <span className="blue">{user.Upliner}</span>
+                ) : (
+                  "-"
+                )}
+              </p>
               <p>
                 <strong>User Name:</strong>{" "}
                 {user.name ? <span className="blue">{user.name}</span> : "-"}

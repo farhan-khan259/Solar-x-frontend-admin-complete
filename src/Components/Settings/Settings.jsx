@@ -3,10 +3,11 @@ import {
   FaArrowLeft,
   FaCamera,
   FaChevronRight,
-  FaCoins,
+  // FaCoins,
   FaHistory,
+  FaInfoCircle,
   FaLifeRing,
-  FaMoneyCheckAlt,
+  // FaMoneyCheckAlt,
   FaSignOutAlt,
   FaTicketAlt,
   FaUser,
@@ -74,15 +75,19 @@ export default function Settings() {
 
       {/* Balance Cards */}
       <div className="balance-row">
-        <div className="balance-card">
-          <FaMoneyCheckAlt className="balance-icon" />
+        <div style={{ background: "#0ede26ff" }} className="balance-card">
+          {/* <FaMoneyCheckAlt className="balance-icon" /> */}
           <p className="balance-title">Total Deposit</p>
-          <span>PKR 0</span>
+          <span>
+            <strong style={{ color: "#fff" }}>PKR 0</strong>
+          </span>
         </div>
-        <div className="balance-card">
-          <FaCoins className="balance-icon" />
+        <div style={{ background: "#f9ac1e" }} className="balance-card">
+          {/* <FaCoins className="balance-icon" /> */}
           <p className="balance-title">Total Team Commission</p>
-          <span>PKR 0</span>
+          <span>
+            <strong style={{ color: "#fff" }}>PKR 0</strong>
+          </span>
         </div>
       </div>
 
@@ -103,7 +108,10 @@ export default function Settings() {
           <MenuItem icon={<MdAssignmentTurnedIn />} label="Active Plans" />
         </Link>
         <Link to="/support">
-          <MenuItem icon={<FaLifeRing />} label="Support" />
+          <MenuItem icon={<FaLifeRing />} label="Service Management" />
+        </Link>
+        <Link to="/ourinfo">
+          <MenuItem icon={<FaInfoCircle />} label="Our Information Solar X" />
         </Link>
 
         {/* Logout Menu */}

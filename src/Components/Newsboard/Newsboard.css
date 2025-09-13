@@ -39,7 +39,7 @@
 .newsboardd-titled {
     font-size: 18px;
     font-weight: bold;
-    color: var(--primary-color);
+    color: red;
 }
 
 .newsboardd-scroll-wrapperd {

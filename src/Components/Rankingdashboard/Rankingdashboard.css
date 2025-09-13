@@ -3,8 +3,9 @@
     --accent-color: #f9ac1e;
     --bg-color: #f4f7fa;
     --card-bg: #ffffff;
+    --blue-box: #2467f6;
+    --orange-box: #f89e2f;
     --text-dark: #222;
-    --text-light: #666;
     --shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
     --radius: 12px;
 }
@@ -15,319 +16,200 @@ body {
     color: var(--text-dark);
 }
 
-.ranking-wrapper8 {
+.ranking-wrapper {
     max-width: 1200px;
     margin: auto;
     padding: 16px;
 }
 
-.card8 {
-    background: var(--card-bg);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    padding: 16px;
-    transition: all 0.2s ease;
-}
-
-.card8:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
-}
-
-.ranking-header8 {
+/* Header */
+.ranking-header {
     display: flex;
     align-items: center;
-    gap: 12px;
+    justify-content: center;
+    /* center heading */
+    position: relative;
     margin-bottom: 20px;
 }
 
-.ranking-header8 h2 {
-    font-weight: 600;
-    font-size: 20px;
-}
-
-.back-link8 {
+.back-link {
+    position: absolute;
+    left: 0;
+    /* stick arrow to left edge */
     color: var(--primary-color);
     font-size: 24px;
     display: flex;
     align-items: center;
 }
 
-.badge8 {
-    background: var(--primary-color);
-    color: white;
-    padding: 3px 8px;
-    font-size: 12px;
-    border-radius: 6px;
+.ranking-header h2 {
+    font-weight: 600;
+    font-size: 22px;
+    text-align: center;
+    flex: 1;
 }
 
-.rank-title8 {
+/* Grid */
+.ranking-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+/* Rank Card */
+.rank-card {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+/* Top Section */
+.rank-top {
     display: flex;
     align-items: center;
     gap: 12px;
 }
 
-.rank-icon8 {
-    width: 55px;
-    height: 55px;
+.rank-top img {
+    width: 60px;
+    height: 60px;
     border-radius: var(--radius);
     object-fit: cover;
 }
 
-.rank-stats8 {
-    margin-top: 12px;
-    display: grid;
-    gap: 6px;
-    color: var(--text-light);
-    font-size: 14px;
+.rank-title h3 {
+    font-size: 22px;
+    font-weight: bold;
 }
 
-.need8 {
-    display: block;
-    color: red;
-    font-size: 12px;
-}
-
-.progress8 {
+.current-pill {
     background: #e4e4e4;
-    border-radius: var(--radius);
-    height: 8px;
-    margin: 12px 0;
-    overflow: hidden;
-}
-
-.progress-bar8 {
-    background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
-    height: 100%;
-    border-radius: var(--radius);
-}
-
-.reward-info8 {
-    font-size: 14px;
-    color: green;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-}
-
-.section-title8 {
-    margin: 24px 0 14px;
-    font-weight: 600;
-    font-size: 18px;
-}
-
-.ranking-grid8 {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 18px;
-}
-
-.rank-card8 {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    min-height: 180px;
-}
-
-.rank-card8 img {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    object-fit: cover;
-}
-
-.rank-header8 {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 8px;
-}
-
-.level8 {
-    background: var(--accent-color);
-    padding: 3px 6px;
-    border-radius: 6px;
+    padding: 2px 8px;
+    border-radius: 20px;
     font-size: 12px;
-    color: white;
+    margin-top: 4px;
+    display: inline-block;
 }
 
-.reward8 {
-    color: green;
-    font-weight: 500;
+/* Next Rank Goal */
+.next-goal {
+    background: var(--orange-box);
+    border-radius: var(--radius);
+    padding: 12px;
+    color: white;
+    margin-top: 8px;
+}
+
+.next-goal h4 {
+    font-size: 16px;
+    font-weight: bold;
+    color: #c5ff69;
+    margin-bottom: 10px;
+}
+
+.goal-boxes {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.blue-box {
+    background: var(--blue-box);
+    flex: 1;
+    padding: 10px;
+    border-radius: var(--radius);
+    font-size: 14px;
+    text-align: center;
+}
+
+.blue-box .needed {
+    font-size: 12px;
+    color: #ffdddd;
+    margin-top: 4px;
+}
+
+/* Current Investments */
+.current-investments {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.orange-box {
+    background: var(--orange-box);
+    flex: 1;
+    padding: 10px;
+    border-radius: var(--radius);
+    font-size: 14px;
+    color: white;
+    text-align: center;
+}
+
+.orange-box strong {
+    display: block;
+    margin-top: 4px;
+}
+
+/* Progress */
+.progress-section {
+    margin-top: 8px;
+}
+
+.progress-section p {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.next-pill {
+    background: #f3f3f3;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    padding: 2px 8px;
+    font-size: 12px;
+}
+
+.progress-bar {
+    background: #f0f0f0;
+    border-radius: 20px;
+    height: 16px;
+    position: relative;
+    margin: 10px 0;
+}
+
+.progress-fill {
+    background: linear-gradient(90deg, #ffe600, #f89e2f);
+    height: 100%;
+    border-radius: 20px;
+    transition: width 0.5s ease-in-out;
+}
+
+.progress-percent {
+    font-weight: bold;
+    font-size: 14px;
+    float: right;
+}
+
+/* Reward */
+.reward {
+    font-size: 14px;
+    color: #2467f6;
+    font-weight: 600;
     display: flex;
     align-items: center;
     gap: 6px;
 }
 
+/* Responsive */
 @media (max-width: 600px) {
-    :root {
-        --primary-color: #2945ff;
-        --accent-color: #f9ac1e;
-        --bg-color: #f4f7fa;
-        --card-bg: #ffffff;
-        --text-dark: #222;
-        --text-light: #666;
-        --shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
-        --radius: 12px;
+    .ranking-grid {
+        grid-template-columns: 1fr;
     }
 
-    body {
-        background-color: var(--bg-color);
-        font-family: "Segoe UI", Arial, sans-serif;
-        color: var(--text-dark);
-    }
-
-    .ranking-wrapper8 {
-        max-width: 1200px;
-        margin: auto;
-        padding: 16px;
-    }
-
-    .card8 {
-        background: var(--card-bg);
-        border-radius: var(--radius);
-        box-shadow: var(--shadow);
-        padding: 16px;
-        transition: all 0.2s ease;
-    }
-
-    .card8:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
-    }
-
-    .ranking-header8 {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        margin-bottom: 20px;
-    }
-
-    .ranking-header8 h2 {
-        font-weight: 600;
+    .ranking-header h2 {
         font-size: 20px;
-    }
-
-    .back-link8 {
-        color: var(--primary-color);
-        font-size: 24px;
-        display: flex;
-        align-items: center;
-    }
-
-    .badge8 {
-        background: var(--primary-color);
-        color: white;
-        padding: 3px 8px;
-        font-size: 12px;
-        border-radius: 6px;
-    }
-
-    .rank-title8 {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-    }
-
-    .rank-icon8 {
-        width: 55px;
-        height: 55px;
-        border-radius: var(--radius);
-        object-fit: cover;
-    }
-
-    .rank-stats8 {
-        margin-top: 12px;
-        display: grid;
-        gap: 6px;
-        color: var(--text-light);
-        font-size: 14px;
-    }
-
-    .need8 {
-        display: block;
-        color: red;
-        font-size: 12px;
-    }
-
-    .progress8 {
-        background: #e4e4e4;
-        border-radius: var(--radius);
-        height: 8px;
-        margin: 12px 0;
-        overflow: hidden;
-    }
-
-    .progress-bar8 {
-        background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
-        height: 100%;
-        border-radius: var(--radius);
-    }
-
-    .reward-info8 {
-        font-size: 14px;
-        color: green;
-        display: flex;
-        align-items: center;
-        gap: 6px;
-    }
-
-    .section-title8 {
-        margin: 24px 0 14px;
-        font-weight: 600;
-        font-size: 18px;
-    }
-
-    .ranking-grid8 {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 18px;
-    }
-
-    .rank-card8 {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        min-height: 180px;
-    }
-
-    .rank-card8 img {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        object-fit: cover;
-    }
-
-    .rank-header8 {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        margin-bottom: 8px;
-    }
-
-    .level8 {
-        background: var(--accent-color);
-        padding: 3px 6px;
-        border-radius: 6px;
-        font-size: 12px;
-        color: white;
-    }
-
-    .reward8 {
-        color: green;
-        font-weight: 500;
-        display: flex;
-        align-items: center;
-        gap: 6px;
-    }
-
-    @media (max-width: 600px) {
-        .ranking-header8 h2 {
-            font-size: 18px;
-        }
-    }
-
-    .ranking-header8 h2 {
-        font-size: 18px;
     }
 }

@@ -28,6 +28,7 @@ import Withdrawfunds from "./Components/Withdrawfunds/Withdrawfunds";
 
 // ---- ADMIN PANEL COMPONENTS ----
 import adminRoutes from "./admin/adminRoutes";
+import OurInfo from "./Components/OurInfo/OurInfo";
 
 function AppRoutes() {
   const location = useLocation();
@@ -39,9 +40,9 @@ function AppRoutes() {
     return () => clearTimeout(timeout);
   }, [location.pathname]);
 
-  return loading ? (
-    <Loader />
-  ) : (
+  if (loading) return <Loader />;
+
+  return (
     <Routes>
       {/* -------- USER PANEL -------- */}
       <Route path="/" element={<Signin />} />
@@ -62,6 +63,7 @@ function AppRoutes() {
       <Route path="/profile" element={<Profile />} />
       <Route path="/rankingdashboard" element={<Rankingdashboard />} />
       <Route path="/transactionhistory" element={<Transactionhistory />} />
+      <Route path="/ourinfo" element={<OurInfo />} />
 
       {/* -------- ADMIN PANEL -------- */}
       <Route path="/admin" element={<adminRoutes.Dashboard />} />
@@ -94,7 +96,6 @@ function AppRoutes() {
       <Route path="/admin/admins/logs" element={<adminRoutes.AdminLogs />} />
       <Route path="/admin/userdetails" element={<adminRoutes.UserDetails />} />
       <Route path="/admin/promocode" element={<adminRoutes.AdminPromoCodes />} />
-
     </Routes>
   );
 }

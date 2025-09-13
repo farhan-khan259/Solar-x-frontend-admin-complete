@@ -1,151 +1,101 @@
 :root {
-    --primary-color: #2945ff;
-    --accent-color: #f9ac1e;
-    --bg-color: #f4f7fa;
-    --card-bg: #ffffff;
-    --text-dark: #222;
-    --text-light: #666;
-    --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    --radius: 12px;
-}
-
-.back-linksp a {
-    text-decoration: none;
-    color: #1f34cc;
+    --radius: 16px;
+    --shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
 }
 
 .support-container {
-    max-width: 500px;
-    margin: 2rem auto;
-    background: var(--bg-color);
+    max-width: 700px;
+    margin: 1rem auto;
     padding: 1rem;
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-}
-
-/* Header row (arrow + title) */
-.support-header-row {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 1rem;
-}
-
-/* Back icon placed at left within header row */
-.support-header-row .back-linksp {
-    position: absolute;
-    left: 0;
-    color: #2945ff;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 20px;
-}
-
-.support-linksp a {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    color: var(--primary-color);
-}
-
-/* Page Title */
-.support-heading {
-    font-size: 28px;
-    color: var(--text-dark);
-    margin: 0;
-}
-
-.support-list {
-    display: flex;
-    flex-direction: column;
-    gap: 0.8rem;
-}
-
-.support-card {
-    display: flex;
-    align-items: center;
-    background: var(--card-bg);
-    border-radius: var(--radius);
-    padding: 0.8rem;
-    box-shadow: var(--shadow);
-    justify-content: space-between;
-}
-
-.support-icon {
-    font-size: 1.5rem;
-    color: var(--primary-color);
-}
-
-.support-info {
-    flex: 1;
-    margin-left: 0.8rem;
-}
-
-.support-info a {
-    color: var(--text-dark);
-    font-weight: 500;
-    text-decoration: none;
-    width: 100%;
     text-align: center;
 }
 
-.support-info span {
-    display: block;
-    color: var(--text-light);
-    font-size: 0.85rem;
+/* Header */
+.support-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin-bottom: 1rem;
 }
 
-.copy-btn {
-    background: none;
-    border: none;
-    font-size: 1.2rem;
-    cursor: pointer;
-    color: var(--primary-color);
+.support-header h2 {
+    font-size: 22px;
+    font-weight: 700;
+    color: #111;
 }
 
-.join-btn {
-    display: block;
-    margin: 1rem auto 0;
-    background: var(--primary-color);
-    color: white;
-    padding: 0.6rem 1.5rem;
-    border: none;
-    border-radius: var(--radius);
-    font-size: 1rem;
-    cursor: pointer;
+.back-btn {
+    position: absolute;
+    left: 0;
+    font-size: 20px;
+    color: #2945ff;
+    text-decoration: none;
 }
 
-.join-btn:hover {
-    background: #1f34cc;
-}
-
-/* Responsive */
-@media (max-width: 600px) {
-    .support-container {
-        margin: 0;
-    }
-
-    .support-heading {
-        font-size: 24px;
-    }
-}
-
-
-
-/* Add button-like style for internal Telegram items */
-.support-btn-link {
-    display: inline-block;
-    background: var(--primary-color);
-    color: white !important;
+/* Section titles */
+.section-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 1rem 0;
+    background: #f9ac1e;
+    color: #222;
     padding: 0.4rem 0.8rem;
     border-radius: var(--radius);
-    text-decoration: none;
-    font-weight: 500;
-    font-size: 0.9rem;
-    transition: background 0.3s ease;
+    display: inline-block;
 }
 
-.support-btn-link:hover {
-    background: #1f34cc;
+/* Grid layout */
+.support-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Card design */
+.support-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1.2rem 0.8rem;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    text-decoration: none;
+    color: white;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.support-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+.card-icon {
+    font-size: 2rem;
+    margin-bottom: 0.6rem;
+}
+
+.support-card p {
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+/* Thank you */
+.thank-text {
+    margin-top: 2rem;
+    font-size: 20px;
+    font-weight: 700;
+    color: #e63946;
+}
+
+
+@media screen and (max-width:320px) {
+    .support-header h2 {
+        font-size: 19px;
+        font-weight: 700;
+        color: #111;
+    }
 }

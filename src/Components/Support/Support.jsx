@@ -1,7 +1,7 @@
 import {
   FaArrowLeft,
-  FaCopy,
-  FaPhone,
+  FaHeadset,
+  FaMoneyBillWave,
   FaTelegramPlane,
   FaWhatsapp,
 } from "react-icons/fa";
@@ -9,82 +9,98 @@ import { Link } from "react-router-dom";
 import "./Support.css";
 
 export default function Support() {
-  const contacts = [
+  const services = [
     {
+      label: "WhatsApp Group",
       icon: <FaWhatsapp />,
+      color: "#25d366", // WhatsApp green
+      link: "https://chat.whatsapp.com/JtbgoWJFMYRHf2E2cxKHYT?mode=ems_copy_c",
+    },
+    {
       label: "WhatsApp Channel",
-      link: "https://chat.whatsapp.com/KA1Ckx1OGJXJ6MK9kzLGy",
-      copy: true,
-    },
-    {
       icon: <FaWhatsapp />,
-      label: "WhatsApp Number",
-      link: "tel:+44xxxxxxxxx",
-      text: "+44xxxxxxxxx",
-      copy: true,
+      color: "#128c7e",
+      link: "https://whatsapp.com/channel/0029VbAhvj35K3zaTDKLf32U",
     },
     {
-      icon: <FaPhone />,
-      label: "Support Call",
-      link: "tel:+44xxxxxxxxx",
-      text: "+44xxxxxxxxx",
-      copy: true,
+      label: "Withdraw+Deposit Issue",
+      icon: <FaMoneyBillWave />,
+      color: "#2a9d8f",
+      link: "tel:+923374341762",
     },
     {
+      label: "Customer Service",
+      icon: <FaHeadset />,
+      color: "#6c5ce7",
+      link: "tel:+923356784524",
+    },
+    {
+      label: "Telegram Group",
       icon: <FaTelegramPlane />,
-      label: "Telegram Channel",
-      link: "/support", // Internal link now
-      internal: true,
+      color: "#229ED9", // Telegram blue
+      link: "https://t.me/+POADMsqnKTJhNzdk",
     },
     {
-      icon: <FaTelegramPlane />,
-      label: "Telegram Contact",
-      link: "/support", // Internal link now
-      internal: true,
+      label: "Telegram Service",
+      icon: <FaHeadset />,
+      color: "#264653",
+      link: "https://t.me/Solarx0fficial",
+    },
+    {
+      label: "Deposit+Withdraw (Telegram)",
+      icon: <FaMoneyBillWave />,
+      color: "#00b4d8",
+      link: "https://t.me/Solarx0fficial",
     },
   ];
 
   return (
     <div className="support-container">
-      {/* Header row */}
-      <div className="support-header-row">
-        <Link to="/setting" className="back-linksp">
+      {/* Header */}
+      <div className="support-header">
+        <Link to="/setting" className="back-btn">
           <FaArrowLeft />
         </Link>
-        <h2 className="support-heading">Support</h2>
+        <h2>Solar X Service Support</h2>
       </div>
 
-      <div className="support-list">
-        {contacts.map((c, i) => (
-          <div key={i} className="support-card">
-            <div className="support-icon">{c.icon}</div>
-            <div className="support-info">
-              {c.internal ? (
-                <Link to={c.link} className="support-btn-link">
-                  {c.label}
-                </Link>
-              ) : (
-                <a href={c.link} target="_blank" rel="noopener noreferrer">
-                  {c.label}
-                </a>
-              )}
-              {c.text && <span>{c.text}</span>}
-            </div>
-
-            {/* Show copy button only if copy=true and not internal */}
-            {c.copy && !c.internal && (
-              <button
-                className="copy-btn"
-                onClick={() => navigator.clipboard.writeText(c.text || c.link)}
-              >
-                <FaCopy />
-              </button>
-            )}
-          </div>
+      {/* WhatsApp Section */}
+      <h3 className="section-title">WhatsApp Team Services</h3>
+      <div className="support-grid">
+        {services.slice(0, 4).map((s, i) => (
+          <a
+            key={i}
+            href={s.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="support-card"
+            style={{ background: s.color }}
+          >
+            <div className="card-icon">{s.icon}</div>
+            <p>{s.label}</p>
+          </a>
         ))}
       </div>
 
-      <button className="join-btn">Customer Services</button>
+      {/* Telegram Section */}
+      <h3 className="section-title">Telegram Team Services</h3>
+      <div className="support-grid">
+        {services.slice(4).map((s, i) => (
+          <a
+            key={i}
+            href={s.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="support-card"
+            style={{ background: s.color }}
+          >
+            <div className="card-icon">{s.icon}</div>
+            <p>{s.label}</p>
+          </a>
+        ))}
+      </div>
+
+      <h2 className="thank-text">THANK YOU</h2>
     </div>
   );
 }

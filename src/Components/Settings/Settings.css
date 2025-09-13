@@ -118,10 +118,11 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    flex: 1;
+    flex: 1 1;
+    font-size: 18px;
     background: var(--card-bg);
     padding: 10px;
-    border-radius: 10px;
+    border-radius: 16px;
     box-shadow: var(--shadow);
 }
 
@@ -133,7 +134,7 @@
 
 .balance-title {
     font-size: 13px;
-    color: var(--accent-color);
+    color: #000;
     font-weight: 600;
     margin-bottom: 4px;
 }

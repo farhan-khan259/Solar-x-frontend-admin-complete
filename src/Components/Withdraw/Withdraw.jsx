@@ -12,7 +12,7 @@ const Withdraw = () => {
         <span>Withdraw Funds</span>
       </div>
 
-      <div className="balance-card">
+      <div className="balance-card-withdraw">
         <div>
           <span className="balance-label">Available Balance</span>
           <div className="balance-amount">0 PKR</div>

@@ -1,33 +1,27 @@
-import {
-  FaArrowLeft,
-  FaGift,
-  FaInfoCircle,
-  FaLink,
-  FaUsers,
-} from "react-icons/fa";
+import { FaArrowLeft, FaInfoCircle, FaLink } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import "./Promocodepage.css";
 
 const Promocodepage = () => {
-  const leaders = [
-    { name: "Rapid Neo Official", users: 722 },
-    { name: "NomanShaikh", users: 25 },
-    { name: "Sadam Hussain", users: 23 },
-    { name: "Usman00", users: 20 },
-    { name: "Alikhan", users: 17 },
-  ];
+  // const leaders = [
+  //   { name: "Rapid Neo Official", users: 722 },
+  //   { name: "NomanShaikh", users: 25 },
+  //   { name: "Sadam Hussain", users: 23 },
+  //   { name: "Usman00", users: 20 },
+  //   { name: "Alikhan", users: 17 },
+  // ];
 
-  const logs = [
-    { user: "Umair khan", leader: "Cheeku143", reward: "Rs9" },
-    { user: "Tahira", leader: "Rapid Neo Official", reward: "Rs1" },
-    { user: "Sadam", leader: "Zahid Khan", reward: "Rs2" },
-    { user: "Biya67", leader: "Rapid Neo Official", reward: "Rs9" },
-    { user: "Azhar Abbas", leader: "Umar", reward: "Rs2" },
-    { user: "Ahmad Abdullah", leader: "Umar", reward: "Rs2" },
-    { user: "Abdullah Irfan", leader: "Rapid Neo Official", reward: "Rs1" },
-    { user: "Muhammad kamran", leader: "Rapid Neo Official", reward: "Rs2" },
-    { user: "Ahmed", leader: "Rapid Neo Official", reward: "Rs2" },
-  ];
+  // const logs = [
+  //   { user: "Umair khan", leader: "Cheeku143", reward: "Rs9" },
+  //   { user: "Tahira", leader: "Rapid Neo Official", reward: "Rs1" },
+  //   { user: "Sadam", leader: "Zahid Khan", reward: "Rs2" },
+  //   { user: "Biya67", leader: "Rapid Neo Official", reward: "Rs9" },
+  //   { user: "Azhar Abbas", leader: "Umar", reward: "Rs2" },
+  //   { user: "Ahmad Abdullah", leader: "Umar", reward: "Rs2" },
+  //   { user: "Abdullah Irfan", leader: "Rapid Neo Official", reward: "Rs1" },
+  //   { user: "Muhammad kamran", leader: "Rapid Neo Official", reward: "Rs2" },
+  //   { user: "Ahmed", leader: "Rapid Neo Official", reward: "Rs2" },
+  // ];
 
   return (
     <div className="promo-container">
@@ -44,15 +38,25 @@ const Promocodepage = () => {
       <div className="promo-input-box">
         <input type="text" placeholder="Enter Promo Code" />
         <button className="redeem-btn">Redeem</button>
-        <p>You can redeem one code per day</p>
+        <b>
+          <p style={{ color: "green" }}>You can redeem one code per day</p>
+        </b>
       </div>
       <div className="promo-join">
         <p>
           <b>Want exclusive high-reward promo codes?</b> <br />
-          Join our official WhatsApp channel for special Promo code!
+          <b style={{ color: "#2945ff" }}>
+            Join our official WhatsApp channel for special Promo code!
+          </b>
         </p>
         <button className="join-btn">
-          <FaLink /> Join Channel
+          <Link
+            to="https://whatsapp.com/channel/0029VbAhvj35K3zaTDKLf32U
+"
+          >
+            {" "}
+            <FaLink /> Join Channel
+          </Link>
         </button>
       </div>
 
@@ -77,7 +81,7 @@ const Promocodepage = () => {
       </section>
 
       {/* Today's Summary */}
-      <section className="promo-section">
+      {/* <section className="promo-section">
         <h3>
           <FaUsers /> Today's Promo Summary
         </h3>
@@ -100,10 +104,10 @@ const Promocodepage = () => {
             ))}
           </tbody>
         </table>
-      </section>
+      </section> */}
 
       {/* Usage Logs */}
-      <section className="promo-section">
+      {/* <section className="promo-section">
         <h3>
           <FaGift /> Promo Code Usage Logs
         </h3>
@@ -115,7 +119,7 @@ const Promocodepage = () => {
             </div>
           ))}
         </div>
-      </section>
+      </section> */}
     </div>
   );
 };

@@ -1,172 +1,229 @@
 :root {
-    --primary-color: #2945ff;
-    --accent-color: #f9ac1e;
-    --bg-color: #f4f7fa;
+    --blue: #004aad;
+    --green: #00c853;
+    --red: #e53935;
+    --orange: #ff9800;
+    --yellow: #fbc02d;
+    --pink: #d81b60;
     --card-bg: #ffffff;
-    --text-dark: #222;
-    --text-light: #666;
-    --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    --radius: 12px;
+    --shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    --radius: 15px;
 }
 
-.notactive {
-    color: #2945ff;
-    font-size: 20px;
-    font-weight: 700;
-    margin-block: 20px;
-}
-
-.card a {
-    color: #ffac02;
-}
-
-/* Container */
-.container {
+.active-container {
     min-height: 100vh;
-    background: var(--bg-color);
+    background: #f8fafc;
     display: flex;
-    align-items: flex-start;
     justify-content: center;
     padding: 20px;
 }
 
-/* Card */
-.card {
+.active-card {
     background: var(--card-bg);
     box-shadow: var(--shadow);
     border-radius: var(--radius);
+    padding: 20px;
     width: 100%;
     max-width: 420px;
-    overflow: hidden;
-    padding: 16px;
 }
 
 /* Top Bar */
-.top-bar {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.active-top {
+    text-align: center;
     position: relative;
-    margin-bottom: 16px;
+    margin-bottom: 15px;
 }
 
 .back-link {
     position: absolute;
     left: 0;
-    color: var(--primary-color);
+    top: 0;
+    color: var(--blue);
     font-size: 1.4rem;
-    text-decoration: none;
 }
 
-.back-icon {
-    vertical-align: middle;
-    color: #2945ff;
-}
-
-.main-heading {
-    font-size: 1.5rem;
-    font-weight: 700;
+.active-heading {
+    font-size: 22px;
+    font-weight: bold;
     color: #000;
-    text-align: center;
-    margin: 0;
 }
 
-/* Plan Header */
-.plan {
-    padding: 12px;
-    border: 1px solid #eee;
-    border-radius: var(--radius);
-}
-
-.plan-header {
+/* Stats Row */
+.stats-row {
     display: flex;
     justify-content: space-between;
+    margin: 15px 0;
+}
+
+.stat-box {
+    flex: 1;
+    margin: 0 5px;
+    padding: 12px;
+    border-radius: var(--radius);
+    color: white;
+    text-align: center;
+    box-shadow: var(--shadow);
+}
+
+.stat-box p {
+    margin: 0;
+    font-size: 14px;
+}
+
+.stat-box h3 {
+    margin: 5px 0 0;
+    font-size: 18px;
+}
+
+.blue-green {
+    background: linear-gradient(90deg, var(--blue), var(--green));
+}
+
+/* Buttons Row */
+.btn-row {
+    display: flex;
+    justify-content: space-between;
+    margin: 15px 0px;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.btn {
+    flex: 1;
+    margin: 0 5px;
+    padding: 8px;
+    border-radius: 8px;
+    border: none;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn.orange {
+    background: var(--orange);
+}
+
+.btn.red {
+    background: var(--red);
+}
+
+.btn.yellow {
+    background: var(--yellow);
+    color: #fff;
+}
+
+/* Plan Title Box */
+.plan-title-box {
+    background: var(--blue);
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    border-radius: var(--radius);
+    margin: 15px 0;
+}
+
+.plan-title-box h2 {
+    margin: 0;
+    font-size: 20px;
+}
+
+/* Circle Timer */
+.circle-timer {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    border: 6px solid var(--green);
+    margin: 15px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
 }
 
-.plan-title {
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: var(--text-dark);
+.circle-title {
+    font-size: 14px;
+    color: var(--blue);
 }
 
-.status {
-    padding: 4px 10px;
+.circle-time {
+    font-weight: bold;
+    color: var(--red);
+    margin-top: 5px;
+}
+
+/* More Information */
+.more-info {
+    margin-top: 20px;
+    background: #e0f7fa;
+    border-radius: var(--radius);
+    padding: 12px;
+}
+
+.more-info h3 {
+    text-align: center;
+    margin: 0 0 10px;
+    color: var(--blue);
+}
+
+.info-item {
+    background: #fff;
     border-radius: 8px;
-    font-size: 0.8rem;
-    font-weight: 500;
-}
-
-.status.active {
-    background: #e0f9e8;
-    color: #2ea44f;
-}
-
-/* Details */
-.plan-details {
-    margin-top: 12px;
-}
-
-.detail {
+    padding: 8px 12px;
+    margin: 6px 0;
     display: flex;
     justify-content: space-between;
-    padding: 4px 0;
-    font-size: 0.95rem;
-    color: var(--text-dark);
+    font-size: 14px;
+    box-shadow: var(--shadow);
 }
 
-.value {
-    font-weight: 500;
+.red {
+    color: var(--red);
+    font-weight: bold;
 }
 
-.green {
-    color: green;
+.blue {
+    color: var(--blue);
+    font-weight: bold;
 }
 
-.purple {
-    color: purple;
+.pink {
+    color: var(--pink);
+    font-weight: bold;
 }
 
-/* Progress Bar */
-.progress-bar {
-    height: 6px;
-    background: #eee;
-    border-radius: var(--radius);
-    margin: 12px 0;
-    overflow: hidden;
-}
-
-.progress {
-    height: 100%;
-    background: linear-gradient(to right, var(--primary-color), var(--accent-color));
-}
-
-/* Timer */
-.timer {
-    background: var(--primary-color);
-    color: white;
+/* Capital Box */
+.capital-box {
+    background: #fff3f3;
+    color: var(--red);
+    font-weight: bold;
     text-align: center;
-    padding: 8px;
-    border-radius: var(--radius);
-    font-weight: 500;
-    font-size: 0.9rem;
+    padding: 10px;
+    margin-top: 15px;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
 }
 
 /* Responsive */
 @media (max-width: 480px) {
-    .card {
-        max-width: 100%;
+    .stat-box h3 {
+        font-size: 16px;
     }
 
-    .main-heading {
-        font-size: 1.3rem;
+    .circle-timer {
+        width: 150px;
+        height: 150px;
     }
 
-    .plan-title {
-        font-size: 1rem;
+    .plan-title-box h2 {
+        font-size: 18px;
     }
+}
 
-    .detail {
-        font-size: 0.85rem;
+
+@media (max-width: 321px) {
+    .active-heading {
+        font-size: 18px;
+        font-weight: bold;
+        color: #000;
     }
 }

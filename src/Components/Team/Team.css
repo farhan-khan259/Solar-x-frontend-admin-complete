@@ -52,6 +52,10 @@ body {
 }
 
 
+.referral-percent {
+    color: red !important;
+}
+
 /* Button group */
 .team-buttons {
     display: flex;
@@ -336,9 +340,8 @@ body {
 
 .referral-header h3 {
     margin: 0;
-    font-size: 16px;
-    color: #36cfc9;
-    /* Teal heading */
+    font-size: 15px;
+    color: #f9ac1e;
 }
 
 .referral-percent {
@@ -355,8 +358,11 @@ body {
 .team-referral-card p {
     margin: 5px 0;
     color: #777777;
+    border: 2px solid #1c33cc;
     font-weight: 600;
     font-size: 14px;
+    padding: 5px 12px;
+    border-radius: 8px;
 }
 
 /* ================== Team Details Section ================== */
@@ -417,9 +423,14 @@ body {
     line-height: 1.6;
 }
 
-.user-card p {
-    margin: 6px 0;
+.user-cardteam p {
+    margin: 5px 0;
+    color: #777777;
+    border: 2px solid #1c33cc;
     font-weight: 600;
+    font-size: 14px;
+    padding: 5px 12px;
+    border-radius: 8px;
 }
 
 .user-card .blue {

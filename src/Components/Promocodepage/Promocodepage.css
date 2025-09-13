@@ -100,10 +100,22 @@ body {
     border: none;
     padding: 8px 14px;
     border-radius: var(--radius);
-    display: flex;
+    display: inline-flex;
+    /* keep icon + text aligned */
     align-items: center;
+    justify-content: center;
+    /* center content inside button */
     gap: 6px;
     margin-top: 10px;
+
+    /* Center the button itself */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.join-btn a {
+    text-decoration: none;
+    color: white;
 }
 
 .promo-section {

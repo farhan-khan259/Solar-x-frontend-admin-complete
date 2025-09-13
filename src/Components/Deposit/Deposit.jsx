@@ -16,8 +16,8 @@ export default function Deposit() {
   const numberRef = useRef(null);
 
   const methods = [
-    { name: "Easypaisa(C2C)", bonus: "6%" },
-    { name: "JazzCash(C2C)", bonus: "6%" },
+    { name: "Easypaisa(C2C)", bonus: "5%" },
+    { name: "JazzCash(C2C)", bonus: "5%" },
   ];
 
   const images = {
@@ -36,7 +36,10 @@ export default function Deposit() {
     },
   };
 
-  const amountToDisplay = customAmount || "500";
+  // ✅ Fixed 5% bonus calculation
+  const amountToDisplay = customAmount
+    ? (parseFloat(customAmount) + parseFloat(customAmount) * 0.05).toFixed(0)
+    : "00";
 
   const handleImageUpload = (e) => {
     const file = e.target.files[0];
@@ -100,8 +103,11 @@ export default function Deposit() {
       >
         <div className="amount-box2">
           <div className="amount-text2">
-            <p>AMOUNT OF PAYMENT</p>
-            <h1>{amountToDisplay}.00</h1>
+            <p>
+              AMOUNT OF PAYMENT <span style={{ color: "red" }}>+ 5%</span>
+            </p>
+
+            <h1>{amountToDisplay}</h1>
             <p className="warning">
               The payment amount must be consistent with the order amount.
             </p>
@@ -172,7 +178,10 @@ export default function Deposit() {
               />
             </label>
           </div>
-          <button className="submit-btn" onClick={() => setShowSuccess(true)}>
+          <button
+            className="submit-btndep"
+            onClick={() => setShowSuccess(true)}
+          >
             Submit
           </button>
         </div>

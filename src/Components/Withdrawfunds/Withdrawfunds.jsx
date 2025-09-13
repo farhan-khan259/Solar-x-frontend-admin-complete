@@ -66,11 +66,12 @@ const Withdrawfunds = () => {
       {/* 24/7 Withdrawal Service */}
       <div className="card3 green-card3">
         <h3 className="step-title3">
-          <FaRegClock className="step-icon3" /> 24/7 Withdrawal Service
+          <FaRegClock className="step-icon3" />
+          Withdrawal Service 10:00 AM – 8:00 PM
         </h3>
         <p className="available-btn3">Withdrawals Available Anytime</p>
         <p className="service-note3">
-          Your withdrawal will be credited to your account within 24 hours.
+          Your withdrawal will be credited to your account within 6-12 hours.
         </p>
       </div>
 

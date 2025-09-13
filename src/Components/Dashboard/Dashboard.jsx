@@ -6,18 +6,17 @@ import {
   FiBarChart2,
   FiBell,
   FiGrid,
-  FiHeadphones,
   FiSettings,
   FiUsers,
 } from "react-icons/fi";
 import { Link } from "react-router-dom";
-import profileimg from "../../Assets/Pictures/download.jpg";
+import profileimg from "../../Assets/Pictures/profileelonmusk.jpeg";
 import "./Dashboard.css";
 
-import img2 from "../../Assets/Pictures/1a.jpeg";
-import img3 from "../../Assets/Pictures/1b.jpeg";
-import img4 from "../../Assets/Pictures/1c.jpeg";
-import img1 from "../../Assets/Pictures/1d.jpeg";
+import img1 from "../../Assets/Pictures/dash1.jpeg";
+import img2 from "../../Assets/Pictures/dash2.jpeg";
+import img3 from "../../Assets/Pictures/dash3.jpeg";
+import img4 from "../../Assets/Pictures/dash4.jpeg";
 import Newsboard from "../Newsboard/Newsboard";
 
 const slides = [
@@ -61,6 +60,17 @@ const slides = [
 
 export default function Dashboard() {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [showAnnouncements, setShowAnnouncements] = useState(false);
+  const [showPopup, setShowPopup] = useState(true);
+
+  // show popup only once after login
+  useEffect(() => {
+    const hasSeen = sessionStorage.getItem("dashboardPopupShown");
+    if (!hasSeen) {
+      setShowPopup(true);
+      sessionStorage.setItem("dashboardPopupShown", "true");
+    }
+  }, []);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -84,28 +94,98 @@ export default function Dashboard() {
 
   return (
     <div className="dashboard">
-      {/* New Header */}
+      {/* 🔹 Popup (shows only once after login) */}
+      {/* 🔹 SolarX Popup (shows after login) */}
+      {showPopup && (
+        <div className="solarx-popup-overlay">
+          <div className="solarx-popup">
+            <div className="popup-header">
+              <h2>☀️ Solar X</h2>
+              <button className="close-btn" onClick={() => setShowPopup(false)}>
+                ✖
+              </button>
+            </div>
+
+            <div className="popup-body">
+              <ol>
+                <li style={{ color: "#2945ff" }}>
+                  <strong>Solar X launched in 2025 🚀</strong>
+                </li>
+                <li>Contract runs for 2 years.</li>
+                <li>
+                  Minimum deposit:{" "}
+                  <strong style={{ color: "red" }}>1000 PKR</strong>.
+                </li>
+                <li>
+                  Minimum withdrawal:{" "}
+                  <strong style={{ color: "red" }}>100 PKR</strong>.
+                </li>
+                <li>
+                  Withdraw profit once balance is{" "}
+                  <strong style={{ color: "red" }}>100 PKR</strong> or more.
+                </li>
+                <li>
+                  <strong style={{ color: "red" }}>No withdrawal fee</strong>.
+                </li>
+                <li>Join our WhatsApp group for updates 📲</li>
+                <li className="highlight">
+                  8.Ranking Reward Available And Extra Bouns√ Weekly+Monthly
+                  Salary Coming Soon💰
+                </li>
+                <li>
+                  <b>Withdrawal Time:</b> 10:00 AM – 8:00 PM &nbsp; | &nbsp;
+                  <b>Deposit Time:</b> 24/7
+                </li>
+              </ol>
+            </div>
+
+            <div className="popup-actions">
+              <a
+                href="https://chat.whatsapp.com/"
+                target="_blank"
+                rel="noreferrer"
+                className="popup-btn orange"
+              >
+                Join WhatsApp Group
+              </a>
+
+              <button
+                className="popup-btn grey"
+                onClick={() => setShowPopup(false)}
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Header */}
       <header className="headerd">
         <div className="header-leftd">
-          <img
-            src={profileimg} // Replace with your image
-            alt="profile"
-            className="profile-picd"
-          />
+          <img src={profileimg} alt="profile" className="profile-picd" />
         </div>
-
         <div className="header-centerd">
           <h1 className="header-titled">SOLAR X DASHBOARD</h1>
         </div>
-
         <div className="header-rightd">
-          <Link to="/support">
-            <FiHeadphones className="header-icond" title="Customer Support" />
-          </Link>
-
-          <Link to="/transactionhistory">
-            <FiBell className="header-icond" title="Notifications" />
-          </Link>
+          <div className="notification-wrapper">
+            <FiBell
+              className="header-icond"
+              title="Notifications"
+              onClick={() => setShowAnnouncements((prev) => !prev)}
+            />
+            {showAnnouncements && (
+              <div className="announcement-popup">
+                <h4>📢 Announcements</h4>
+                <ul>
+                  <li>🚀 New mining plans launching soon!</li>
+                  <li>🌞 Solar X powered by green energy.</li>
+                  <li>💰 Withdrawals are now processed 24/7.</li>
+                </ul>
+              </div>
+            )}
+          </div>
         </div>
       </header>
 

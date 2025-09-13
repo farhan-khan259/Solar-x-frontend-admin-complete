@@ -48,19 +48,19 @@
     color: var(--primary-color);
 }
 
-.balance-card {
+.balance-card-withdraw {
     background-color: var(--card-bg);
     padding: 20px;
     border-radius: var(--radius);
     box-shadow: var(--shadow);
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: left !important;
     margin-bottom: 20px;
     transition: transform 0.2s ease;
 }
 
-.balance-card:hover {
+.balance-card-withdraw:hover {
     transform: translateY(-2px);
 }
 
